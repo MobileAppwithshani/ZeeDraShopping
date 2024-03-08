@@ -1,8 +1,8 @@
 // ignore_for_file: use_super_parameters, prefer_const_constructors, avoid_unnecessary_containers
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import '../../Controllers/google_sign_in_controller.dart';
 import '../../Utilities/application_Constsnts.dart';
 import 'login_screen.dart';
 
@@ -14,6 +14,9 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  final GoogleSigninController _googleSigninController =
+      Get.put(GoogleSigninController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +56,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     color: ApplicationConstants.applicationSecondaryColor,
                     borderRadius: BorderRadius.circular(20.0)),
                 child: TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      _googleSigninController.signInWithGoogle();
+                    },
                     icon: Image.asset(
                       'assets/images/icons8-google-48.png',
                       width: Get.width / 12,
@@ -62,7 +67,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     label: Text(
                       ApplicationConstants.googleSignInText,
                       style: TextStyle(
-                          color: ApplicationConstants.applicationTextColor),
+                          color: const Color.fromARGB(255, 136, 112, 108)),
                     )),
               ),
             ),
